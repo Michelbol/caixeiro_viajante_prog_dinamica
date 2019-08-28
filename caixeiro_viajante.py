@@ -1,4 +1,5 @@
 import time
+
 # Matriz quadrada com 11 cidades e as distâncias entre elas
 cities = [
   #0    #1  #2  #3  #4  #5  #6  #7  #8  #9  #10
@@ -15,6 +16,8 @@ cities = [
   [18,  12, 13, 25, 22, 37, 84, 13, 18, 38, 0]    #10
 ]
 
+resultados = []
+
 melhor_solucao = float("inf")
 melhor_lista = []
 lista_tabu = [{'lista': [0,1,2,3,4,5,6,7,8,9,10], 'custo': float("inf")}]
@@ -26,6 +29,7 @@ def troca_elem(lista, pos_x, pos_y):
 def calc_dist(lista):
     dist = 0
     string = ""
+
     for index in range(len(lista)):
         elemento_atual = lista[index]
         if index+1 == len(lista):
