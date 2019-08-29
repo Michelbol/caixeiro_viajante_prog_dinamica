@@ -18,8 +18,7 @@ cidades = [
 ]
 
 resultados = {}
-vetorCidades = [0,1,2,3,4,5,6,7,8]
-melhorResultado = []
+vetorCidades = [0,1,2,3,4,5,6,7,8,9]
 
 def getChave(lista):
     retorno = ""

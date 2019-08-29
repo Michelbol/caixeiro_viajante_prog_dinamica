@@ -1,6 +1,4 @@
-import time
-
-# Matriz quadrada com 11 cidades e as distÃ¢ncias entre elas
+# Matriz quadrada com 11 cidades e as distâncias entre elas
 cities = [
   #0    #1  #2  #3  #4  #5  #6  #7  #8  #9  #10
   [0,   29, 20, 21, 16, 31, 100,12, 4, 31,  18],  #0
@@ -16,39 +14,26 @@ cities = [
   [18,  12, 13, 25, 22, 37, 84, 13, 18, 38, 0]    #10
 ]
 
-resultados = []
-
 melhor_solucao = float("inf")
 melhor_lista = []
-lista_tabu = [{'lista': [0,1,2,3,4,5,6,7,8,9,10], 'custo': float("inf")}]
-custo = {}
+lista_tabu = [{'lista': [0, 8, 7, 2, 10, 1, 4, 3, 5, 9, 6, 0], 'custo': 299}]
+
 
 def troca_elem(lista, pos_x, pos_y):
-    lista[pos_x], lista[pos_y] = lista[pos_y], lista[pos_x]
+    aux = lista[pos_x]
+    lista[pos_x] = lista[pos_y]
+    lista[pos_y] = aux
+
 
 def calc_dist(lista):
     dist = 0
-    string = ""
-
     for index in range(len(lista)):
         elemento_atual = lista[index]
         if index+1 == len(lista):
             proximo_element = lista[0]
         else:
             proximo_element = lista[index+1]
-        if index == 0:
-            string = str(elemento_atual) + "," + str(proximo_element)
-        else:
-            string += ","+str(proximo_element)
-        if string in custo:
-            custo_encontrado = custo[string]
-        else:
-            custo_encontrado = 0
-        if custo_encontrado > 0:
-            dist = custo_encontrado
-        else:
-            dist += cities[elemento_atual][proximo_element]
-            custo[string] = dist
+        dist += cities[elemento_atual][proximo_element]
     return dist
 
 
@@ -63,7 +48,7 @@ def melhor_resultado_lista_tabu(lista_tabu, index_tabu):
 
 
 def busca_tabu(melhor_solucao, melhor_lista):
-    for index in range(5000):
+    for index in range(10):
         lista_tabu_atual = []
         lista_tabu_atual = lista_tabu_atual+lista_tabu[index]['lista']
         melhor_solucao_local = float("inf")
@@ -97,10 +82,7 @@ def busca_tabu(melhor_solucao, melhor_lista):
     return [melhor_solucao, melhor_lista]
 
 
-inicio = time.time()
 melhor_galera = busca_tabu(melhor_solucao, melhor_lista)
 melhor_solucao = melhor_galera[0]
 melhor_lista = melhor_galera[1]
-fim = time.time()
-print(fim - inicio)
 print(melhor_solucao, melhor_lista)
