@@ -30,7 +30,7 @@ def getChave(lista):
 
     return retorno
 
-def contaCaminho(lista):
+def cortaCaminho(lista):
     chave = ""
     virgula = ""
     penultimaCidade = 0
@@ -62,9 +62,9 @@ def calcularDistancia(listaCidades):
         chave = getChave(listaCidades)
         resultados[chave] = cidades[listaCidades[0]][listaCidades[1]]
     else:
-        cortaCaminho = contaCaminho(listaCidades)
+        resultAnterior = cortaCaminho(listaCidades)
         chave = getChave(listaCidades)
-        resultados[chave] = resultados[cortaCaminho[0]] + cidades[cortaCaminho[1]][cortaCaminho[2]]  
+        resultados[chave] = resultados[resultAnterior[0]] + cidades[resultAnterior[1]][resultAnterior[2]]  
 
     return resultados[chave]
 
